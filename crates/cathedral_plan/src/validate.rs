@@ -1,6 +1,6 @@
 //! DAG validator for workflow correctness.
 
-use cathedral_core::{NodeId, CoreResult, CoreError};
+use cathedral_core::NodeId;
 use super::dag::Dag;
 use indexmap::IndexSet;
 
@@ -116,7 +116,7 @@ impl Validator {
         let mut rec_stack = IndexSet::new();
 
         for &node_id in dag.nodes.keys() {
-            if self dfs_cycle(node_id, dag, &mut visited, &mut rec_stack)? {
+            if self.dfs_cycle(node_id, dag, &mut visited, &mut rec_stack)? {
                 return Err(ValidationError::Cycle {
                     nodes: rec_stack.iter().copied().collect(),
                 });
@@ -150,7 +150,7 @@ impl Validator {
             }
         }
 
-        rec_stack.remove(&node_id);
+        rec_stack.shift_remove(&node_id);
         Ok(false)
     }
 
@@ -180,7 +180,7 @@ impl Validator {
         }
 
         let disconnected: Vec<_> = dag.nodes.keys()
-            .filter(|id| !reachable.contains(id))
+            .filter(|&&id| !reachable.contains(&id))
             .copied()
             .collect();
 

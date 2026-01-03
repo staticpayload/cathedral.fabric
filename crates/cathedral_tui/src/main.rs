@@ -5,8 +5,8 @@
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
-use anyhow::Result;
-use cathedral_tui::ui::TuiApp;
+use std::process;
+use cathedral_tui::{TuiApp, TuiError};
 use clap::Parser;
 
 #[derive(Parser)]
@@ -18,11 +18,11 @@ struct Args {
     input: String,
 }
 
-fn main() -> Result<()> {
+fn main() {
     let args = Args::parse();
 
-    let app = TuiApp::new(&args.input)?;
-    app.run()?;
-
-    Ok(())
+    if let Err(e) = TuiApp::new(&args.input).and_then(|mut app| app.run()) {
+        eprintln!("Error: {}", e);
+        process::exit(1);
+    }
 }

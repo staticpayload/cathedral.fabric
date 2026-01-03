@@ -1,0 +1,33 @@
+[package]
+name = "cathedral_certify"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]
+cathedral_core = { path = "../cathedral_core" }
+cathedral_log = { path = "../cathedral_log" }
+cathedral_sim = { path = "../cathedral_sim" }
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_cbor = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+# For cryptographic signatures
+ed25519-dalek = { workspace = true }
+blake3 = { workspace = true }
+
+# For certificate serialization
+hex = { workspace = true }
+chrono = { workspace = true }
+rand = "0.8"
+rand_core = "0.6"
+uuid = { workspace = true, features = ["v4", "serde"] }
+
+[dev-dependencies]
+proptest = { workspace = true }
+tokio = { workspace = true, features = ["rt-multi-thread", "macros"] }

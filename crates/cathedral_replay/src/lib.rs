@@ -12,8 +12,8 @@ pub mod state;
 pub mod trace;
 pub mod snapshot;
 
-pub use engine::{ReplayEngine, ReplayConfig, ReplayError};
+pub use engine::{ReplayEngine, ReplayConfig, ReplayEngineError};
 pub use diff::{DiffEngine, DiffResult, DiffReport};
-pub use state::{ReconstructedState, StateDiff};
+pub use state::{ReconstructedState, StateDiff, ReplayError as StateReplayError};
 pub use trace::{TraceReader, TraceEvent};
 pub use snapshot::{SnapshotLoader, SnapshotError};

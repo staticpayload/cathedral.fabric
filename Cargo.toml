@@ -11,6 +11,7 @@ members = [
     "crates/cathedral_storage",
     "crates/cathedral_cluster",
     "crates/cathedral_sim",
+    "crates/cathedral_certify",
     "crates/cathedral_cli",
     "crates/cathedral_server",
     "crates/cathedral_tui",

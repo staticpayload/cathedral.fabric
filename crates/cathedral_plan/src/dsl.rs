@@ -17,8 +17,8 @@ pub fn parse(_input: &str) -> CoreResult<Ast> {
 /// Parse error type
 pub type ParseError = CoreError;
 
-/// Re-export AST for convenience
-pub use super::compiler::{Ast, Statement, Expr};
+/// Re-export AST types for convenience
+pub use super::compiler::{Statement, Expr};
 
 #[cfg(test)]
 mod tests {

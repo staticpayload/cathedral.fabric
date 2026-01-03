@@ -12,8 +12,9 @@ pub mod compiler;
 pub mod resource;
 pub mod validate;
 
-pub use dsl::{parse, ParseError, Ast};
+pub use dsl::{parse, ParseError};
+pub use compiler::Ast;
 pub use dag::{Dag, Node, Edge, NodeKind};
-pub use compiler::{Compiler, CompilerOutput, CompilerError};
+pub use compiler::{Compiler, CompilerOutput, CompilerWarning};
 pub use resource::{ResourceContract, ResourceBounds};
 pub use validate::{Validator, ValidationError};

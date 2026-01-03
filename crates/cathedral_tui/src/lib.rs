@@ -16,4 +16,4 @@ pub use ui::{TuiApp, TuiConfig, TuiError};
 pub use view::{TimelineView, DagView, WorkerView, ProvenanceView};
 pub use renderer::{Renderer, RenderConfig, RenderError};
 pub use input::{InputHandler, InputEvent, KeyBinding};
-pub use layout::{Layout, LayoutArea, LayoutConfig};
+pub use layout::{Layout, LayoutArea, LayoutConfig, CalculatedLayout};

@@ -62,6 +62,41 @@ impl Capability {
     }
 }
 
+impl std::fmt::Display for Capability {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::NetRead { allowlist } => {
+                write!(f, "NetRead({})", allowlist.join(","))
+            }
+            Self::NetWrite { allowlist } => {
+                write!(f, "NetWrite({})", allowlist.join(","))
+            }
+            Self::FsRead { prefixes } => {
+                write!(f, "FsRead({})", prefixes.join(","))
+            }
+            Self::FsWrite { prefixes } => {
+                write!(f, "FsWrite({})", prefixes.join(","))
+            }
+            Self::DbRead { tables } => {
+                write!(f, "DbRead({})", tables.join(","))
+            }
+            Self::DbWrite { tables } => {
+                write!(f, "DbWrite({})", tables.join(","))
+            }
+            Self::Exec { cpu_limit, mem_limit } => {
+                write!(f, "Exec(cpu:{},mem:{})", cpu_limit, mem_limit)
+            }
+            Self::WasmExec { fuel, memory } => {
+                write!(f, "WasmExec(fuel:{},mem:{})", fuel, memory)
+            }
+            Self::ClockRead => write!(f, "ClockRead"),
+            Self::EnvRead { vars } => {
+                write!(f, "EnvRead({})", vars.join(","))
+            }
+        }
+    }
+}
+
 /// A set of capabilities granted to a run
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CapabilitySet {

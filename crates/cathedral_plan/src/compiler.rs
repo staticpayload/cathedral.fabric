@@ -1,7 +1,8 @@
 //! Compiler from DSL AST to executable DAG.
 
-use cathedral_core::{NodeId, Capability, CoreResult, CoreError};
-use super::{dag::{Dag, Node, Edge, NodeKind, ResourceRequirements}, dsl::Ast};
+use cathedral_core::{NodeId, Capability, CoreResult};
+use indexmap::IndexSet;
+use super::dag::{Dag, Node, Edge, NodeKind, ResourceRequirements};
 
 /// Output from compiling a workflow
 #[derive(Debug, Clone)]
@@ -132,16 +133,15 @@ impl Compiler {
                         function: "merge".to_string(),
                         initial: Vec::new(),
                     },
-                    dependencies: branch_ids.into_iter().collect(),
+                    dependencies: branch_ids.iter().copied().collect(),
                     capabilities: Vec::new(),
                     resources: ResourceRequirements::new(),
                 };
                 dag.add_node(agg_node)?;
 
-                for &bid in &dag.nodes.keys().collect::<Vec<_>>() {
-                    if branch_ids.contains(&bid) {
-                        dag.add_edge(Edge::new(bid, agg_id))?;
-                    }
+                // Add edges from each branch to the aggregation node
+                for bid in &branch_ids {
+                    dag.add_edge(Edge::new(*bid, agg_id))?;
                 }
 
                 Ok(agg_id)
