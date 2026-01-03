@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "Content-addressed storage and snapshot management for CATHEDRAL.FABRIC"
+keywords = ["storage", "snapshot", "content-addressable", "cas"]
+categories = ["database", "database-implementations"]
+readme = "../../README.md"
 
 [dependencies]
 cathedral_core = { path = "../cathedral_core" }

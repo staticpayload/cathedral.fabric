@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "Workflow DSL compiler and DAG builder for CATHEDRAL.FABRIC"
+keywords = ["dsl", "dag", "workflow", "compiler"]
+categories = ["compilers", "config"]
+readme = "../../README.md"
 
 [dependencies]
 cathedral_core = { path = "../cathedral_core" }

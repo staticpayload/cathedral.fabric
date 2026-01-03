@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "Tool sandbox, normalization, and capability enforcement for CATHEDRAL.FABRIC"
+keywords = ["sandbox", "tools", "capability", "isolation"]
+categories = ["development-tools"]
+readme = "../../README.md"
 
 [dependencies]
 cathedral_core = { path = "../cathedral_core" }

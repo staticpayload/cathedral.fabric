@@ -44,7 +44,11 @@ impl Version {
             .parse()
             .map_err(|_| VersionError::InvalidComponent(parts[2].to_string()))?;
 
-        Ok(Self { major, minor, patch })
+        Ok(Self {
+            major,
+            minor,
+            patch,
+        })
     }
 
     /// Get as array
@@ -56,7 +60,11 @@ impl Version {
 
 impl Default for Version {
     fn default() -> Self {
-        Self { major: 0, minor: 1, patch: 0 }
+        Self {
+            major: 0,
+            minor: 1,
+            patch: 0,
+        }
     }
 }
 

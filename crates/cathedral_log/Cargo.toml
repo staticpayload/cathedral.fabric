@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "Canonical event log with hash-chain validation for CATHEDRAL.FABRIC"
+keywords = ["logging", "event-sourcing", "hash-chain", "audit"]
+categories = ["data-structures", "database"]
+readme = "../../README.md"
 
 [dependencies]
 cathedral_core = { path = "../cathedral_core" }

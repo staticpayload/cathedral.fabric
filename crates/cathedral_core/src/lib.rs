@@ -6,17 +6,17 @@
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
-pub mod id;
-pub mod hash;
 pub mod capability;
+pub mod error;
+pub mod hash;
+pub mod id;
 pub mod time;
 pub mod version;
-pub mod error;
 
 // Re-exports
-pub use id::{RunId, EventId, NodeId, WorkerId, ClusterId, TaskId, SnapshotId, DecisionId};
-pub use hash::{Hash, HashChain, ContentAddress, AddressAlgorithm, HashError};
 pub use capability::{Capability, CapabilitySet};
-pub use time::{LogicalTime, Timestamp, Duration};
-pub use version::{Version, VersionError};
 pub use error::{CoreError, CoreResult};
+pub use hash::{AddressAlgorithm, ContentAddress, Hash, HashChain, HashError};
+pub use id::{ClusterId, DecisionId, EventId, NodeId, RunId, SnapshotId, TaskId, WorkerId};
+pub use time::{Duration, LogicalTime, Timestamp};
+pub use version::{Version, VersionError};

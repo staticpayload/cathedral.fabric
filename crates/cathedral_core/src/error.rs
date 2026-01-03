@@ -77,13 +77,13 @@ impl fmt::Display for CoreError {
         match self {
             Self::InvalidEncoding => write!(f, "Invalid encoding"),
             Self::EncodingOverflow => write!(f, "Encoding buffer overflow"),
-            Self::HashMismatch { expected, actual } => write!(
-                f,
-                "Hash mismatch: expected {}, got {}",
-                expected, actual
-            ),
+            Self::HashMismatch { expected, actual } => {
+                write!(f, "Hash mismatch: expected {}, got {}", expected, actual)
+            }
             Self::InvalidHash { reason } => write!(f, "Invalid hash: {}", reason),
-            Self::BrokenChain { position } => write!(f, "Broken hash chain at position {}", position),
+            Self::BrokenChain { position } => {
+                write!(f, "Broken hash chain at position {}", position)
+            }
             Self::InvalidId { reason } => write!(f, "Invalid ID: {}", reason),
             Self::InvalidTimestamp { reason } => write!(f, "Invalid timestamp: {}", reason),
             Self::InvalidCapability { reason } => write!(f, "Invalid capability: {}", reason),

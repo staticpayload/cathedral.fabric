@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "Determinism certification and validation with Ed25519 signatures for CATHEDRAL.FABRIC"
+keywords = ["certification", "verification", "ed25519", "determinism"]
+categories = ["development-tools::testing", "cryptography"]
+readme = "../../README.md"
 
 [dependencies]
 cathedral_core = { path = "../cathedral_core" }

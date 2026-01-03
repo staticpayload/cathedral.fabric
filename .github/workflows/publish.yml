@@ -1,0 +1,122 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish (e.g., 0.1.0)"
+        required: true
+        type: string
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish to crates.io
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache cargo index
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.os }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache cargo build
+        uses: actions/cache@v4
+        with:
+          path: target
+          key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pkg-config libssl-dev
+
+      # Publish in dependency order
+      - name: Publish cathedral_core
+        run: |
+          cd crates/cathedral_core
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish cathedral_log
+        run: |
+          sleep 30
+          cd crates/cathedral_log
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish cathedral_replay
+        run: |
+          sleep 30
+          cd crates/cathedral_replay
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish cathedral_plan
+        run: |
+          sleep 30
+          cd crates/cathedral_plan
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish cathedral_policy
+        run: |
+          sleep 30
+          cd crates/cathedral_policy
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish cathedral_tool
+        run: |
+          sleep 30
+          cd crates/cathedral_tool
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish cathedral_wasm
+        run: |
+          sleep 30
+          cd crates/cathedral_wasm
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish cathedral_storage
+        run: |
+          sleep 30
+          cd crates/cathedral_storage
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish cathedral_cluster
+        run: |
+          sleep 30
+          cd crates/cathedral_cluster
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish cathedral_runtime
+        run: |
+          sleep 30
+          cd crates/cathedral_runtime
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish cathedral_sim
+        run: |
+          sleep 30
+          cd crates/cathedral_sim
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish cathedral_certify
+        run: |
+          sleep 30
+          cd crates/cathedral_certify
+          cargo publish --no-verify --token ${{ secrets.CARGO_REGISTRY_TOKEN }}

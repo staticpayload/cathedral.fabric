@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "WASM sandbox with fuel limits and host functions for CATHEDRAL.FABRIC"
+keywords = ["wasm", "sandbox", "wasmtime", "fuel"]
+categories = ["wasm"]
+readme = "../../README.md"
 
 [dependencies]
 cathedral_core = { path = "../cathedral_core" }

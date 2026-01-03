@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "Replay engine and diff tool for deterministic execution in CATHEDRAL.FABRIC"
+keywords = ["replay", "diff", "deterministic", "testing"]
+categories = ["development-tools::testing", "command-line-utilities"]
+readme = "../../README.md"
 
 [dependencies]
 cathedral_core = { path = "../cathedral_core" }

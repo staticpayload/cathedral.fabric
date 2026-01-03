@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "Deterministic execution runtime with scheduler and executor for CATHEDRAL.FABRIC"
+keywords = ["runtime", "scheduler", "executor", "deterministic"]
+categories = ["concurrency", "asynchronous"]
+readme = "../../README.md"
 
 [dependencies]
 cathedral_core = { path = "../cathedral_core" }

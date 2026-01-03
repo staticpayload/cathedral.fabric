@@ -126,7 +126,6 @@ impl fmt::Display for HashError {
     }
 }
 
-
 /// A hash chain for linking events
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct HashChain {

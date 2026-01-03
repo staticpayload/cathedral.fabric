@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "Policy language and decision engine for capability-based security in CATHEDRAL.FABRIC"
+keywords = ["policy", "security", "capability", "authorization"]
+categories = ["authentication"]
+readme = "../../README.md"
 
 [dependencies]
 cathedral_core = { path = "../cathedral_core" }

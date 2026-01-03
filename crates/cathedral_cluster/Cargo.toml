@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "Distributed execution cluster with Raft consensus for CATHEDRAL.FABRIC"
+keywords = ["cluster", "distributed", "raft", "consensus"]
+categories = ["concurrency", "asynchronous"]
+readme = "../../README.md"
 
 [dependencies]
 cathedral_core = { path = "../cathedral_core" }

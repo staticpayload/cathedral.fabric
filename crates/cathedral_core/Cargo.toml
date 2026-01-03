@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "Core types for CATHEDRAL.FABRIC - IDs, hashes, capabilities, and time"
+keywords = ["deterministic", "hash", "capability", "id"]
+categories = ["data-structures", "date-and-time"]
+readme = "../../README.md"
 
 [dependencies]
 serde = { workspace = true }

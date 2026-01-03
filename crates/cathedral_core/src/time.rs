@@ -168,10 +168,7 @@ impl Duration {
     /// Duration from seconds
     #[must_use]
     pub const fn from_secs(seconds: u64) -> Self {
-        Self {
-            seconds,
-            nanos: 0,
-        }
+        Self { seconds, nanos: 0 }
     }
 
     /// Duration from milliseconds

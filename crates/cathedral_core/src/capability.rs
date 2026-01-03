@@ -25,7 +25,10 @@ pub enum Capability {
     DbWrite { tables: Vec<String> },
 
     /// Execute external process with resource limits
-    Exec { cpu_limit: String, mem_limit: String },
+    Exec {
+        cpu_limit: String,
+        mem_limit: String,
+    },
 
     /// Execute WASM with fuel and memory limits
     WasmExec { fuel: u64, memory: u64 },
@@ -83,7 +86,10 @@ impl std::fmt::Display for Capability {
             Self::DbWrite { tables } => {
                 write!(f, "DbWrite({})", tables.join(","))
             }
-            Self::Exec { cpu_limit, mem_limit } => {
+            Self::Exec {
+                cpu_limit,
+                mem_limit,
+            } => {
                 write!(f, "Exec(cpu:{},mem:{})", cpu_limit, mem_limit)
             }
             Self::WasmExec { fuel, memory } => {
@@ -180,9 +186,7 @@ impl CapabilitySet {
     #[must_use]
     pub fn can_read_fs(&self, path: &str) -> bool {
         self.capabilities.iter().any(|cap| match cap {
-            Capability::FsRead { prefixes } => {
-                prefixes.iter().any(|p| matches_path(p, path))
-            }
+            Capability::FsRead { prefixes } => prefixes.iter().any(|p| matches_path(p, path)),
             _ => false,
         })
     }
@@ -191,9 +195,7 @@ impl CapabilitySet {
     #[must_use]
     pub fn can_write_fs(&self, path: &str) -> bool {
         self.capabilities.iter().any(|cap| match cap {
-            Capability::FsWrite { prefixes } => {
-                prefixes.iter().any(|p| matches_path(p, path))
-            }
+            Capability::FsWrite { prefixes } => prefixes.iter().any(|p| matches_path(p, path)),
             _ => false,
         })
     }

@@ -5,6 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 authors.workspace = true
+description = "Deterministic simulation harness with seeded randomness for CATHEDRAL.FABRIC"
+keywords = ["simulation", "testing", "deterministic", "seeding"]
+categories = ["development-tools::testing", "simulation"]
+readme = "../../README.md"
 
 [dependencies]
 cathedral_core = { path = "../cathedral_core" }

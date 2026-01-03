@@ -1,5 +1,11 @@
 # CATHEDRAL.FABRIC
 
+[![CI](https://github.com/cathedral-fabric/cathedral.fabric/actions/workflows/ci.yml/badge.svg)](https://github.com/cathedral-fabric/cathedral.fabric/actions)
+[![Crates.io](https://img.shields.io/badge/crates.io-v0.1.0-orange)](https://crates.io/crates/cathedral-core)
+[![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue)](LICENSE)
+[![Docs](https://img.shields.io/badge/docs-latest-green)](docs)
+[![Security](https://img.shields.io/badge/security-policy-green)](SECURITY.md)
+
 A deterministic, distributed, capability-safe execution fabric for agent workflows.
 
 ## What It Is
