@@ -1,0 +1,47 @@
+# Rust
+/target
+/Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build
+dist/
+build/
+
+# Test data
+/test-bundles/
+/test-data/
+/fuzz-corpus/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Coverage
+*.profraw
+*.profdata
+tarpaulin-report.html
+cobertura.xml
+
+# Temporary
+/tmp/
+*.tmp
+*.bak
+
+# Backup
+*.backup
+*.old

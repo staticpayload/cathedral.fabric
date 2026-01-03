@@ -5,9 +5,6 @@
 
 #![warn(missing_docs)]
 #![warn(clippy::all)]
-#![cfg_attr(not(test), no_std)]
-
-extern crate alloc;
 
 pub mod id;
 pub mod hash;
@@ -17,9 +14,9 @@ pub mod version;
 pub mod error;
 
 // Re-exports
-pub use id::{RunId, EventId, NodeId, WorkerId, ClusterId};
-pub use hash::{Hash, HashChain};
-pub use capability::{Capability, CapabilitySet, CapabilityKind};
+pub use id::{RunId, EventId, NodeId, WorkerId, ClusterId, TaskId, SnapshotId, DecisionId};
+pub use hash::{Hash, HashChain, ContentAddress, AddressAlgorithm, HashError};
+pub use capability::{Capability, CapabilitySet};
 pub use time::{LogicalTime, Timestamp, Duration};
-pub use version::{Version, SemVer};
+pub use version::{Version, VersionError};
 pub use error::{CoreError, CoreResult};

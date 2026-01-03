@@ -9,9 +9,10 @@ authors.workspace = true
 [dependencies]
 serde = { workspace = true }
 serde_json = { workspace = true }
+postcard = { workspace = true }
 blake3 = { workspace = true }
 indexmap = { workspace = true }
-uuid = { workspace = true }
+uuid = { workspace = true, features = ["v5"] }
 chrono = { workspace = true }
 thiserror = { workspace = true }
 hex = { workspace = true }

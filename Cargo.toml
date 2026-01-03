@@ -45,6 +45,7 @@ rustc-hash = "2.0"
 tokio = { version = "1.40", features = ["full"] }
 tokio-util = { version = "0.7", features = ["codec"] }
 futures = "0.3"
+async-trait = "0.1"
 
 # Consensus/Cluster
 raft = { version = "0.7", default-features = false }
@@ -53,7 +54,7 @@ prost = "0.13"
 
 # WASM sandbox
 wasmtime = { version = "26", default-features = false, features = ["cranelift", "async", "component-model"] }
-wasmtime-wasi = { version = "26", features = ["tokio"] }
+wasmtime-wasi = "26"
 
 # Storage
 redb = { version = "2.1", features = ["logging"] }
@@ -82,6 +83,11 @@ tracing-chrome = "0.7"
 thiserror = "2.0"
 anyhow = "1.0"
 color-eyre = "0.6"
+
+# Testing
+tempfile = "3.13"
+console = "0.15"
+indicatif = "0.17"
 
 # Misc
 bytes = "1.7"
