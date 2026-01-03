@@ -5,9 +5,9 @@
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
+use anyhow::Result;
 use cathedral_server::api::ApiServer;
 use clap::Parser;
-use color_eyre::Result;
 
 #[derive(Parser)]
 #[command(name = "cathedral-server")]
@@ -20,7 +20,6 @@ struct Args {
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    color_eyre::install()?;
     let args = Args::parse();
 
     tracing_subscriber::fmt()

@@ -82,12 +82,45 @@ impl CapabilitySet {
         self.capabilities.insert(capability);
     }
 
+    /// Grant a capability (alias for grant)
+    pub fn allow(&mut self, capability: Capability) {
+        self.capabilities.insert(capability);
+    }
+
     /// Check if a specific capability is granted
     ///
     /// This checks for exact match of the capability
     #[must_use]
     pub fn has(&self, capability: &Capability) -> bool {
         self.capabilities.contains(capability)
+    }
+
+    /// Check if a capability is allowed (exact or kind match)
+    #[must_use]
+    pub fn allows(&self, capability: &Capability) -> bool {
+        // First check exact match
+        if self.capabilities.contains(capability) {
+            return true;
+        }
+
+        // Then check for kind match with wildcard/broad permissions
+        self.capabilities.iter().any(|cap| match (cap, capability) {
+            // Wildcard network access
+            (Capability::NetRead { allowlist: a }, Capability::NetRead { .. }) => {
+                a.contains(&"*".to_string())
+            }
+            (Capability::NetWrite { allowlist: a }, Capability::NetWrite { .. }) => {
+                a.contains(&"*".to_string())
+            }
+            // Wildcard filesystem access
+            (Capability::FsRead { prefixes: p }, Capability::FsRead { .. }) => {
+                p.contains(&".".to_string()) || p.contains(&"*".to_string())
+            }
+            (Capability::FsWrite { prefixes: p }, Capability::FsWrite { .. }) => {
+                p.contains(&".".to_string()) || p.contains(&"*".to_string())
+            }
+            _ => false,
+        })
     }
 
     /// Check if network read is allowed for a domain

@@ -42,6 +42,12 @@ impl LogicalTime {
     pub fn advance(&mut self, n: u64) {
         self.0 += n;
     }
+
+    /// Saturating addition
+    #[must_use]
+    pub const fn saturating_add(&self, n: u64) -> Self {
+        Self(self.0.saturating_add(n))
+    }
 }
 
 impl Default for LogicalTime {

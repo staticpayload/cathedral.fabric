@@ -5,9 +5,9 @@
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
+use anyhow::Result;
 use cathedral_tui::ui::TuiApp;
 use clap::Parser;
-use color_eyre::Result;
 
 #[derive(Parser)]
 #[command(name = "cathedral-tui")]
@@ -19,7 +19,6 @@ struct Args {
 }
 
 fn main() -> Result<()> {
-    color_eyre::install()?;
     let args = Args::parse();
 
     let app = TuiApp::new(&args.input)?;

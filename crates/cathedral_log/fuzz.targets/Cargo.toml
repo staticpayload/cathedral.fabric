@@ -1,0 +1,13 @@
+[package]
+name = "cathedral_log_fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+cathedral_log = { path = ".." }
+cathedral_core = { path = "../../cathedral_core" }
+libfuzzer-sys = "0.4"
