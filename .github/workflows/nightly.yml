@@ -1,0 +1,43 @@
+name: nightly
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  fuzz-long:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@nightly
+      - name: Install cargo-fuzz
+        run: cargo install cargo-fuzz
+      - name: Run long fuzz (5 min each)
+        run: |
+          for target in cathedral_log cathedral_plan cathedral_policy cathedral_replay cathedral_storage cathedral_wasm; do
+            echo "Fuzzing $target (long)"
+            timeout 300s cargo fuzz run "$target" -- -timeout=10 || true
+          done
+        continue-on-error: true
+
+  sim-long:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run 10000 deterministic sims
+        run: cargo test --package cathedral_sim sim_long --all-features -- --test-threads=1 --nocapture
+
+  certify-cross-platform:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run full certification suite
+        run: cargo test --package cathedral_replay certify_full --all-features -- --test-threads=1

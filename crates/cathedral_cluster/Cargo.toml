@@ -1,0 +1,27 @@
+[package]
+name = "cathedral_cluster"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]
+cathedral_core = { path = "../cathedral_core" }
+cathedral_log = { path = "../cathedral_log" }
+cathedral_storage = { path = "../cathedral_storage" }
+cathedral_runtime = { path = "../cathedral_runtime" }
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+openraft = { workspace = true }
+prost = { workspace = true }
+tokio = { workspace = true, features = ["rt-multi-thread", "macros"] }
+futures = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+async-trait = { workspace = true }
+
+[dev-dependencies]
+proptest = { workspace = true }
+criterion = { workspace = true }

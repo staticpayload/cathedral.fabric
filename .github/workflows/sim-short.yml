@@ -1,0 +1,17 @@
+content</arg_key><arg_value>name: sim-short
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  sim-short:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run short simulation
+        run: cargo test --package cathedral_sim sim_short -- --nocapture
+      - name: Run 100 deterministic sims with fixed seeds
+        run: cargo test --package cathedral_sim sim_fixed_seed -- --test-threads=1

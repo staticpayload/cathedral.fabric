@@ -1,0 +1,22 @@
+name: fuzz-short
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  fuzz-short:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@nightly
+      - name: Install cargo-fuzz
+        run: cargo install cargo-fuzz
+      - name: Run short fuzz (30s each)
+        run: |
+          for target in cathedral_log cathedral_plan cathedral_policy cathedral_replay cathedral_storage cathedral_wasm; do
+            echo "Fuzzing $target"
+            timeout 30s cargo fuzz run "$target" -- -timeout=5 || true
+          done
+        continue-on-error: true

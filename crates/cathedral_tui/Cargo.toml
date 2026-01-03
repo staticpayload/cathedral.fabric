@@ -1,0 +1,33 @@
+[package]
+name = "cathedral_tui"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[[bin]]
+name = "cathedral-tui"
+path = "src/main.rs"
+
+[dependencies]
+cathedral_core = { path = "../cathedral_core" }
+cathedral_log = { path = "../cathedral_log" }
+cathedral_replay = { path = "../cathedral_replay" }
+cathedral_plan = { path = "../cathedral_plan" }
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true, features = ["rt-multi-thread", "macros"] }
+clap = { workspace = true }
+thiserror = { workspace = true }
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+ anyhow = { workspace = true }
+unicode-width = "0.2"
+arboard = "3.4"
+
+[dev-dependencies]
+tempfile = "3.13"

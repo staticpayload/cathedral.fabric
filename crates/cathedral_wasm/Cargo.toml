@@ -1,0 +1,25 @@
+[package]
+name = "cathedral_wasm"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]
+cathedral_core = { path = "../cathedral_core" }
+cathedral_tool = { path = "../cathedral_tool" }
+cathedral_policy = { path = "../cathedral_policy" }
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+wasmtime = { workspace = true }
+wasmtime-wasi = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+async-trait = { workspace = true }
+
+[dev-dependencies]
+proptest = { workspace = true }
+criterion = { workspace = true }
+wat = "1.217"

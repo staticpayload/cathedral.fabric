@@ -1,0 +1,20 @@
+name: certify-short
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  certify-short:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run certification
+        run: cargo test --package cathedral_replay certify_cross_platform -- --test-threads=1
+      - name: Verify bundle integrity
+        run: cargo test --package cathedral_replay bundle_verify --all-features
